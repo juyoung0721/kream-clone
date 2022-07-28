@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 from core.models import TimeStampedModel
 
@@ -6,9 +5,12 @@ from core.models import TimeStampedModel
 class Brand(TimeStampedModel):
     name = models.CharField(max_length=40)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Photo(TimeStampedModel):
-    image = models.ImageField()
+    image = models.ImageField(upload_to="product/%Y/%m/%d/")
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
 
 
@@ -21,3 +23,9 @@ class Product(TimeStampedModel):
     released = models.DateField()
     color = models.CharField(max_length=120)
     released_price = models.PositiveIntegerField()
+
+    def __str__(self) -> str:
+        return f"{self.brand} - {self.name_en}"
+
+    class Meta:
+        ordering = ["name_kr"]
