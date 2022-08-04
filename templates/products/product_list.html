@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    {% comment %} {% for product in products %}
+{% extends 'base.html' %}
+
+{% block title %}KREAM{% endblock title %}
+
+{% block contents %}
+{% comment %} {% for product in products %}
     <p>{{product.brand}}</p>
     <p>{{product.name_en}}</p>
     {% for product_image in product.photo_set.all %}
@@ -20,21 +16,27 @@
     {% endfor %} {% endcomment %}
     <ul>
       {% for product in products %}
-      <li>
-        <p>{{product.name_en}}</p>
+      <li style="list-style-type:none;">
+        <img
+          src="{{product.photo_set.first.image.url}}"
+          alt="상품사진"
+          style="width: 100px"
+        />
+        <a href={% url 'products:상세페이지' product.pk %}>{{product.name_en}}</a>
+        {% comment %} url'앱이름:url에 표시한 name' {% endcomment %}
       </li>
       {% endfor %}
     </ul>
 
     <h5>
       {% if page_obj.has_previous %}
-      <a href="?page={{page_obj.number|add:"-1"}}">이전</a>
+      <a href="?page={{page_obj.previous_page_number}}">이전</a>
       {% endif %}
       
       {{page_obj.number}} / {{page_obj.paginator.num_pages}}
 
       {% if page_obj.has_next %}
-      <a href="?page={{page_obj.number|add:"1"}}">다음</a>
+      <a href="?page={{page_obj.next_page_number}}">다음</a>
       {% endif %}
     </h5>
     {% comment %} <h5>
@@ -46,6 +48,4 @@
         <a href="?page={{page|add:"1"}}">Next</a>
       {% endif %}
     </h5> {% endcomment %}
-    
-  </body>
-</html>
+{% endblock contents %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}STYLE|KREAM{% endblock title %}
+
+{% block contents %}
+<div>
+    {% for style in styles %}
+    <p>작성자 : {{style.user}}</p>
+    {% for style_image in style.photo_set.all %}
+    <img
+      src="{{style_image.image.url}}"
+      alt="스타일사진"
+      style="width: 200px"
+    />{% endfor %}
+    <p>{{style.comment}}</p>
+    <h5>상품태그{{style.count_products}}개</h5>
+    {% for product in style.products.all %}
+    <img src="{{product.photo_set.first.image.url}}" alt="상품이미지" style="width: 100px">
+    <p>{{product.name_en}}</p>
+    <p>{{product.released_price}}원</p>    
+
+    {% endfor %}
+    {% endfor %}
+    
+</div>
+
+{% endblock contents %} 

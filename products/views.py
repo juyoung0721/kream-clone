@@ -2,7 +2,7 @@ from math import ceil
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.core.paginator import Paginator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Product
 
 # 장고만 사용하는 경우
@@ -18,6 +18,18 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context["now"] = timezone.now()
         return context
+
+
+def detail(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+        return render(request, "products/detail.html", {"product": product})
+    except Product.DoesNotExist:
+        return redirect("/products")
+
+
+class ProductDetail(DetailView):
+    model = Product
 
 
 # 장고와 파이썬을 활용한 경우

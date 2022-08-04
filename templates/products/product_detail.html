@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}상세페이지{% endblock title %}
+
+{% block contents %}
+<h5>상세페이지</h5>
+<h5>{{product.name_en}}</h5>
+{% for product_image in product.photo_set.all %}
+    <img
+      src="{{product_image.image.url}}"
+      alt="{{product.name_en}}"
+      style="width: 200px"
+    />
+{% endfor %}
+{% endblock contents %}
