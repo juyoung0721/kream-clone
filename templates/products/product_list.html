@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      a{
+        color: gray;
+        text-decoration: none;
+      }
+      p {
+        margin: 2px 0 0;
+      }
+      .item_box {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .item_inner {
+        display: block;
+        margin: 20px 0;
+        padding: 0 10px;
+      }
+      .pagination{
+        display: grid;
+        width: 480px;
+        grid-template-columns: repeat({{page_obj.paginator.num_pages|add:"2"}}, 1fr); 
+        list-style-type:none;
+        
+      }
+      .cu{
+        font-weight: bolder;
+        color: white;
+        background-color:rgb(177,220,245);
+        
+      }
+      .no_cu{
+        color: rgb(127,127,127);
+        background-color:rgb(229,229,229);
+      }
+      .page_list{
+        display: block;
+        text-align:center;
+        margin:1px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    {% comment %} {% for product in products %}
+    <p>{{product.brand}}</p>
+    <p>{{product.name_en}}</p>
+    {% for product_image in product.photo_set.all %}
+    <img
+      src="{{product_image.image.url}}"
+      alt="상품사진"
+      style="width: 200px"
+    />
+    {% endfor %}
+    {% endfor %} {% endcomment %}
+    {% comment %} <ul>
+      {% for product in products %}
+      <li>
+        <p>{{product.name_en}}</p>
+      </li>
+      {% endfor %}
+    </ul> {% endcomment %}
+    <h3 style="margin: 5px 0;">상품 리스트</h3>
+    <p style="font-size:15px;">{{product_count}}개의 상품이 있습니다.</p>
+    <div class="item_box">
+      {% for product in products %}
+      <div class="item_inner">
+        <div>
+          <img
+            src="{{product.photo_set.first.image.url}}"
+            alt="상품사진"
+            style="width: 150px"
+          />
+        </div>
+        <div>
+          <p style="font-size: 14px">{{product.brand}}</p>
+          <p style="font-size: 14px; color: rgba(34, 34, 34, 0.5)">
+            {{product.name_en}}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h5>
+      {% if page_obj.has_previous %}
+      <a href="?page=1"> 처음으로 </a>
+      <a href="?page={{page_obj.number|add:"-1"}}">&nbsp;이전&nbsp;</a>
+      {% endif %}
+      
+      {{page_obj.number}} / {{page_obj.paginator.num_pages}}
+
+      {% if page_obj.has_next %}
+      <a href="?page={{page_obj.number|add:"1"}}">&nbsp;다음&nbsp;</a>
+      <a href="?page={{page_obj.paginator.num_pages}}"> 끝으로 </a>
+      {% endif %}
+    </h5>
+
+    {% comment %} <h5>
+      {% if page != 1 %}
+        <a href="?page={{page|add:"-1"}}">Previous</a>
+      {% endif %}
+      {{page}}/{{products.paginator.num_pages}}
+      {% if page != products.paginator.num_pages %}
+        <a href="?page={{page|add:"1"}}">Next</a>
+      {% endif %}
+    </h5> {% endcomment %}
+    {% if is_paginated %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="no_cu page_list"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled page_list"><span>&laquo;</span></li>
+      {% endif %}
+      
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="cu page_list"><a href="?page={{ i }}">{{ i }}</a></li>
+        {% else %}
+          <li class="no_cu page_list"><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="no_cu page_list"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled page_list"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
