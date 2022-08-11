@@ -3,9 +3,45 @@
 {% block title %}STYLE|KREAM{% endblock title %}
 
 {% block contents %}
-<div>
+<div class="social_feed">
+  {% for style in styles %}
+  <div class="card_box">
+    <div class="img_box">
+      <img
+        src="{{style.photo_set.first.image.url}}"
+        alt="스타일사진"
+        class ="img"
+      />
+    </div>
+    <div class="card_detail">
+      <div class="user_box">
+        <p>{{style.user}}</p>
+      </div>
+      <div class="text_box">
+        <p>{{style.comment}}</p>
+      </div>
+      <div class="product_list">
+        {% for product in style.products.all %}
+        <div class="product_box">
+          <img src="{{product.photo_set.first.image.url}}" alt="상품사진" >
+          <div class="product_desc">
+            <p class="product_name">{{product.name_en}}</p>
+            <p>{{product.released_price}}원</p>  
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div> 
+  {% endfor %}
+  
+</div>
+
+
+{% comment %} <div class="card_box">
+
     {% for style in styles %}
-    <p>작성자 : {{style.user}}</p>
+    <p class="text">작성자 : {{style.user}}</p>
     {% for style_image in style.photo_set.all %}
     <img
       src="{{style_image.image.url}}"
@@ -22,6 +58,6 @@
     {% endfor %}
     {% endfor %}
     
-</div>
+</div> {% endcomment %}
 
 {% endblock contents %} 

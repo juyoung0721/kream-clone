@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}LOGIN{% endblock title %}
+
+{% block contents %}
+<h1>로그인</h1>
+<form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    {% for field in form %}
+    <p>
+        {{field}}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <span style="color:red; text-size:13px">{{error}}</span>
+            {% endfor %}
+        {% endif %}
+    </p>
+    {% endfor %}
+    {% comment %} <input type="email" name="email" placeholder="예) kream@kream.co.kr"/>
+    <input type="password" name="password"/> {% endcomment %}
+    <button type="submit">로그인</button>
+</form>
+{% endblock contents %}

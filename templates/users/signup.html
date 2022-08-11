@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}SIGNUP{% endblock title %}
+
+{% block contents %}
+<form method="post" action="{% url 'users:signup' %}">
+    {% csrf_token %}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    {% for field in form %}
+    <p>
+        {{field.label}}:{{field}}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <span style="color:red; text-size:13px">{{error}}</span>
+            {% endfor %}
+        {% endif %}
+    </p>
+    {% endfor %}
+    <button type="submit">회원가입</button>
+</form>
+{% endblock contents %}
