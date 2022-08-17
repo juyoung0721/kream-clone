@@ -1,0 +1,13 @@
+.dropdown_header{
+    width: 100%;
+}
+.dropdown_content{
+    display: none;
+}
+.dropdown_header:focus ~.dropdown_content{
+    display: block;
+}
+.dropdown_header:focus ~.dropdown_header > div{
+    border-bottom: 1px solid black;
+    font-weight: 600;
+}

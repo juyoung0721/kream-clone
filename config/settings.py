@@ -37,6 +37,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
 ]
 
 PROJECT_APPS = [
@@ -47,7 +48,9 @@ PROJECT_APPS = [
     "style.apps.StyleConfig",
 ]
 
-THIRD_PARTY_APPS = ["django_seed"]
+THIRD_PARTY_APPS = [
+    "django_seed",
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 

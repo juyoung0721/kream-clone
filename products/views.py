@@ -12,9 +12,9 @@ class ProductListView(ListView):
     model = Product
     template_name = "products/product_list.html"
     context_object_name = "products"
-    paginate_by = 13
+    paginate_by = 16
     ordering = ["created"]
-    paginate_orphans = 5
+    paginate_orphans = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

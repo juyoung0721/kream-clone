@@ -3,31 +3,10 @@
 {% block title %}KREAM{% endblock title %}
 
 {% block contents %}
-{% comment %} {% for product in products %}
-    <p>{{product.brand}}</p>
-    <p>{{product.name_en}}</p>
-    {% for product_image in product.photo_set.all %}
-    <img
-      src="{{product_image.image.url}}"
-      alt="상품사진"
-      style="width: 200px"
-    />
-    {% endfor %}
-    {% endfor %} {% endcomment %}
-    <ul>
-      {% for product in products %}
-      <li style="list-style-type:none;">
-        <img
-          src="{{product.photo_set.first.image.url}}"
-          alt="상품사진"
-          style="width: 100px"
-        />
-        <a href={% url 'products:상세페이지' product.pk %}>{{product.name_en}}</a>
-        {% comment %} url'앱이름:url에 표시한 name' {% endcomment %}
-      </li>
-      {% endfor %}
-    </ul>
 
+<div class="p-5 grid grid-cols-4 gap-x-5 gap-y-10">
+  {% include 'partials/item.html' with products=products%}
+</div>
     <h5>
       {% if page_obj.has_previous %}
       <a href="?page={{page_obj.previous_page_number}}">이전</a>
@@ -39,6 +18,34 @@
       <a href="?page={{page_obj.next_page_number}}">다음</a>
       {% endif %}
     </h5>
+    
+{% comment %} {% for product in products %}
+    <p>{{product.brand}}</p>
+    <p>{{product.name_en}}</p>
+    {% for product_image in product.photo_set.all %}
+    <img
+      src="{{product_image.image.url}}"
+      alt="상품사진"
+      style="width: 200px"
+    />
+    {% endfor %}
+    {% endfor %} {% endcomment %}
+    {% comment %}
+    <ul>
+      {% for product in products %}
+      <li style="list-style-type:none;">
+        <img
+          src="{{product.photo_set.first.image.url}}"
+          alt="상품사진"
+          style="width: 100px"
+        />
+        <a href={% url 'products:상세페이지' product.pk %}>{{product.name_en}}</a>
+        {% comment %} url'앱이름:url에 표시한 name'
+      </li>
+      {% endfor %}
+    </ul> {% endcomment %}
+
+    
     {% comment %} <h5>
       {% if page != 1 %}
         <a href="?page={{page|add:"-1"}}">Previous</a>

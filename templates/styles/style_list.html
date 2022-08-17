@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block title %}STYLE|KREAM{% endblock title %}
 
 {% block contents %}
@@ -26,7 +26,7 @@
           <img src="{{product.photo_set.first.image.url}}" alt="상품사진" >
           <div class="product_desc">
             <p class="product_name">{{product.name_en}}</p>
-            <p>{{product.released_price}}원</p>  
+            <p>{{product.released_price|intcomma}}원</p>  
           </div>
         </div>
         {% endfor %}

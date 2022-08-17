@@ -1,15 +1,132 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block title %}상세페이지{% endblock title %}
 
 {% block contents %}
-<h5>상세페이지</h5>
-<h5>{{product.name_en}}</h5>
-{% for product_image in product.photo_set.all %}
-    <img
-      src="{{product_image.image.url}}"
-      alt="{{product.name_en}}"
-      style="width: 200px"
-    />
-{% endfor %}
+<div class="detail_main_content border_b_gray">
+  <div class="w-140">
+    <img class="pt-24 sticky top-0 " src="{{product.photo_set.first.image.url}}" alt="{{product.name_en}}" />
+  </div>
+  <div class="w-140 border_l_gray">
+    <!-- 제품주요정보 -->
+    <div>
+      <a class="detail_brand" href="">{{product.brand}}</a>
+      <p class="text-lg">{{product.name_en}}</p>
+      <p class="text-sm detail_gray">{{product.name_kr}}</p>
+    </div>
+    <!-- 구매/판매 -->
+    <div class="pt-4 grid grid-cols-2 gap-x-2.5">
+      <a class="detail_btn_divi" style="background-color: #ef6253;" href="">
+        <strong class="text-lg mx-2">구매</strong>
+        <hr class="hr_v">
+        <div class="text-lg ml-2">
+          <p class="text-sm">{{product.released_price|intcomma}}원</p>
+          <p class="text-xs">즉시 구매가</p>
+        </div>
+      </a>
+      <a class="detail_btn_divi" style="background-color: #41b979;" href="">
+        <strong class="text-lg mx-2">판매</strong>
+        <hr class="hr_v">
+        <div class="text-lg ml-2">
+          <p class="text-sm">{{product.released_price|intcomma}}원</p>
+          <p class="text-xs">즉시 판매가</p>
+        </div>
+      </a>
+    </div>
+    <!-- 관심상품 -->
+    <div class="detail_btn_wish">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path fill-rule="evenodd" d="M4.75 2.5a.25.25 0 00-.25.25v9.91l3.023-2.489a.75.75 0 01.954 0l3.023 2.49V2.75a.25.25 0 00-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 01-1.227.579L8 11.722l-3.773 3.107A.75.75 0 013 14.25V2.75z"></path></svg>
+      <p class="mx-1">관심상품</p>
+      <p class="font-semibold">1.3만</p>
+    </div>
+    <!-- 사이즈 -->
+    <div class="border_b_gray flex justify-between pt-5 pb-3">
+      <p class="text-sm text-gray-700">사이즈</p>
+      <a class="font-bold" href="">모든사이즈</a>
+    </div>
+    <!-- 최근거래가 -->
+    <div class="pt-5 pb-3">
+      <p class="text-sm text-gray-700">최근 거래가</p>
+    </div>
+    <!-- 상품정보 -->
+    <div>
+      <h3 class="pt-10 pb-3 border_b_gray text-lg font-bold">상품 정보</h3>
+      <div class="py-5 grid grid-cols-4 border_b_gray">
+        <div class="pr-3">
+          <p class="text-xs  detail_gray">모델번호</p>
+          <p class="text-sm font-bold">{{product.model_number}}</p>
+        </div>
+        <div class="px-3 border_l_gray">
+          <p class="text-xs  detail_gray">출시일</p>
+          <p class="text-sm">{{product.released|date:'y/m/d'}}</p>
+        </div>
+        <div class="px-3 border_l_gray">
+          <p class="text-xs  detail_gray">컬러</p>
+          <p class="text-sm">{{product.color}}</p>
+        </div>
+        <div class="pl-3 border_l_gray">
+          <p class="text-xs  detail_gray">발매가</p>
+          <p class="text-sm">{{ product.released_price|intcomma }}원</p>
+        </div>
+      </div>
+    </div>
+    <!-- 배송정보 -->
+    <div class="pt-10">
+      <h3 class="text-sm text-gray-700">배송정보</h3>
+      <div class="py-3 flex border_b_gray">
+        <img src="/static/img/detail/express.png" alt="번개" style="height:40px">
+        <div class="ml-3">
+          <p class="text-sm">빠른배송 5,000원</p>
+          <p class="text-sm detail_gray">지금 결제시 내일 8/17(수) 도착 예정</p>
+        </div>
+      </div>
+      <div class="py-3 flex">
+        <img src="/static/img/detail/box.png" alt="상자" style="height:40px">
+        <div class="ml-3">
+          <p class="text-sm">일반배송 3,000원</p>
+          <p class="text-sm detail_gray">검수 후 배송 ・ 5-7일 내 도착 예정</p>
+        </div>
+      </div>
+    </div>
+    <!-- 확인메세지1 -->
+    <div>
+      <h3 class="pt-10 pb-3 border_b_gray text-lg font-bold">구매 전 꼭 확인해주세요!</h3>
+      {% include 'partials/dropdown_detail.html'%}
+    </div>
+    <!-- 확인메세지2 -->
+    <div class="pt-10 pb-5 border_b_gray">
+      <ul class="detail_guide_list">
+        <li>
+          <img src="/static/img/detail/guide1.svg" alt="">
+          <div>
+            <strong>100% 정품 보증</strong>
+            <p class="detail_gray">KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를 보상합니다.</p>
+          </div>
+        </li>
+        <li>
+          <img src="/static/img/detail/guide2.svg" alt="">            
+          <div>
+            <strong>엄격한 다중 검수</strong>
+            <p class="detail_gray">모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인 시스템을 거쳐 검수를 진행합니다.</p>
+          </div>
+        </li>
+        <li>
+          <img src="/static/img/detail/guide3.svg" alt="">
+          <div>
+            <strong>정품 인증 패키지</strong>
+            <p class="detail_gray">검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가 포함된 상품이 배송됩니다.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- 확인메세지3 -->
+    <div class="pt-10">
+      <p class="detail_gray text-xs">크림(주)는 통신판매 중개자로서 통신판매의 당사자가 아닙니다. 본 상품은 개별판매자가 등록한 상품으로 상품, 상품정보, 거래에 관한 의무와 책임은 각 판매자에게 있습니다. 단, 거래과정에서 검수하고 보증하는 내용에 대한 책임은 크림(주)에 있습니다.</p>
+    </div>
+  </div>
+</div>
+
 {% endblock contents %}
+ <!-- 긴상자 -->
+    {% comment %} <div class=" w-9 bg-black" style="height:2000px">
+    </div> {% endcomment %}

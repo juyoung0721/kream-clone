@@ -20,5 +20,6 @@
     {% comment %} <input type="email" name="email" placeholder="예) kream@kream.co.kr"/>
     <input type="password" name="password"/> {% endcomment %}
     <button type="submit">로그인</button>
+    <a href="{% url 'users:signup' %}">회원가입</a>
 </form>
 {% endblock contents %}

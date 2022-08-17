@@ -1,0 +1,30 @@
+.font-11{
+    font-size: 11px;
+}
+.express_mark{
+	position: relative;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 11px;
+    padding: 3px 5.5px 4px 17px;
+    color: #31b46e;
+    border: 1px solid #31b46e;
+    border-radius: 2px;
+    font-size: 11px;
+    margin-top: 4px;
+	
+}
+.express_mark svg{
+	position: absolute;
+	left: 3.5px;
+	width: 11px;
+    height: 13px;
+	fill: #31b46e;
+}
+.hide{
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
