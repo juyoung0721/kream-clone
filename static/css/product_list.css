@@ -1,0 +1,41 @@
+.shop_banner_title{
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
+.shop_trend_brand{
+    display: flex;
+    justify-content: space-between;
+}
+
+.shop_trend_brand img{
+    padding: 0 auto;
+    width: 70px;
+}
+.shop_trend_brand p{
+    text-align: center;
+    margin-top: -2px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.shop_filter a{
+    width: 200px;
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+}
+.shop_filter h6{
+    font-size: 14px;
+    font-weight: 700;
+}
+.shop_filter p{
+    font-size: 15px;
+    color: rgba(34,34,34,.5);
+    margin-top: 4px;
+}
+.shop_filter svg{
+    fill: rgba(34,34,34,.5);
+}

@@ -1,23 +1,137 @@
 {% extends 'base.html' %}
 
-{% block title %}KREAM{% endblock title %}
+{% block title %}KREAM|SHOP{% endblock title %}
 
 {% block contents %}
 
-<div class="p-5 grid grid-cols-4 gap-x-5 gap-y-10">
-  {% include 'partials/item.html' with products=products%}
+<!-- 베너 -->
+<div class="pt-10 px-10">
+  <h2 class="shop_banner_title ">SHOP</h2>
 </div>
-    <h5>
-      {% if page_obj.has_previous %}
-      <a href="?page={{page_obj.previous_page_number}}">이전</a>
-      {% endif %}
-      
-      {{page_obj.number}} / {{page_obj.paginator.num_pages}}
+<!-- 트렌드 브랜드 리스트 -->
+<div class="pt-5 px-10">
+  <ul class="shop_trend_brand">
+    <li><a href="">
+      <img src="/static/img/product_list/trend1.png" alt="">
+      <p>아식스</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend2.png" alt="">
+      <p>샤넬</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend3.png" alt="">
+      <p>주얼리</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend4.png" alt="">
+      <p>롤렉스</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend5.png" alt="">
+      <p>루이비통</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend6.png" alt="">
+      <p>헬리녹스</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend7.png" alt="">
+      <p>에어포스</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend8.png" alt="">
+      <p>미니백</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend9.png" alt="">
+      <p>Apple</p>
+    </a></li>
+    <li><a href="">
+      <img src="/static/img/product_list/trend10.png" alt="">
+      <p>까르띠에</p>
+    </a></li>
+  </ul>
+</div>
+<!-- main content -->
+<div class="px-10 flex">
+  <!-- 필터 -->
+  <div class="shop_filter">
+    <h6 class="pt-6 py-4">필터</h6>
+    <ul>
+      <li><a href="">
+        <div>
+          <h6>카테고리</h6>
+          <p>모든 카테고리</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>브랜드</h6>
+          <p>모든 브랜드</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>성별</h6>
+          <p>모든 성별</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>컬렉션</h6>
+          <p>모든 컬렉션</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>신발 사이즈</h6>
+          <p>모든 사이즈</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>의류 사이즈</h6>
+          <p>모든 사이즈</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+      <li><a href="">
+        <div>
+          <h6>가격</h6>
+          <p>모든 가격</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg>
+      </a></li>
+    </ul>
+  </div>
+  <!-- 제품리스트 -->
+  <div>
+    <div class="p-5 grid grid-cols-4 gap-x-5 gap-y-10">
+    {% include 'partials/item.html' with products=products%}
+    </div>
+    <div class="text-center">
+      <h5>
+        {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}">이전&nbsp;</a>
+        {% endif %}
+        
+        {{page_obj.number}} / {{page_obj.paginator.num_pages}}
 
-      {% if page_obj.has_next %}
-      <a href="?page={{page_obj.next_page_number}}">다음</a>
-      {% endif %}
-    </h5>
+        {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">&nbsp;다음</a>
+        {% endif %}
+      </h5>
+    </div> 
+  </div>
+</div>
+
+
     
 {% comment %} {% for product in products %}
     <p>{{product.brand}}</p>
