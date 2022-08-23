@@ -22,4 +22,7 @@
     <button type="submit">로그인</button>
     <a href="{% url 'users:signup' %}">회원가입</a>
 </form>
+<div class="login_btn">
+    <a href="{% url 'users:kakao-login' %}">카카오로 로그인</a>
+</div>
 {% endblock contents %}

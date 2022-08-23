@@ -2,6 +2,8 @@
     font-size: 28px;
     font-weight: 600;
     text-align: center;
+    position: sticky;
+    top: 96px;
 }
 .shop_trend_brand{
     display: flex;
